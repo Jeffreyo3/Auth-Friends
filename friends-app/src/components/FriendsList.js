@@ -1,12 +1,15 @@
-import React from 'react';
+// import React from 'react';
 
 
-class FriendsList extends React.Component {
-    state = {
-        friendsList: []
-    };
+// const FriendsList = () => {
+//     state = {
+//         friendsList : []
+//     };
 
-    render (
-        null;
-    )
-}
+//     return (
+//         this.state
+//     )
+// }
+
+
+// export default FriendsList;
