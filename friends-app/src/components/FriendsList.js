@@ -1,40 +1,40 @@
 import React from 'react';
 import axiosWithAuth from '../axiosWithAuth';
 
-class FriendsList extends React.Component {
-    state = {
-        FriendsList: []
-    };
+import Form from './Form';
 
-    // componentDidMount() {
-    //     this.getData;
-    // }
 
-    getData = () => {
+const FriendsList = (props) => {
+
+    const [friends, setFriends] = React.useState([]);
+
+    React.useEffect(() => {
         axiosWithAuth()
             .get("/friends")
             .then(res => {
-                this.setState({
-                    FriendsList: res.data.friends
-                })
+                setFriends(res.data)
             })
             .catch(err => console.log("axiosWithAuth in FriendsList error: ", err));
-    };
+    }, []);
 
-    formData = () => {
-        const formattedData = [];
-    }
 
-    render() {
-        return (
+
+    return(
+        <>
+            <Form />
             <div className="friends-list">
-                FriendsList.js
+                {friends.map(amigo => (
+                    <div key={amigo.id} className="friend">
+                        <h2>{amigo.name}</h2>
+                        <p>Age: {amigo.age}</p>
+                        <p>Email: {amigo.email}</p>
+                    </div>
+                ))}
             </div>
-        )
-    }
-
-
+        </>
+    )
 }
+
 
 
 export default FriendsList;
